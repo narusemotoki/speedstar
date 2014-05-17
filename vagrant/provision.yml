@@ -12,6 +12,7 @@
         - python-dev
         - libev-dev
         - golang
+        - php5
 - name: Python
   hosts: vagrant
   user: vagrant
