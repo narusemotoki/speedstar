@@ -1,0 +1,21 @@
+- name: APT
+  hosts: vagrant
+  user: vagrant
+  sudo: yes
+  tasks:
+    - name: Change source repository
+      command: sed -i -e 's/\/\/archive.ubuntu.com/\/\/ja.archive.ubuntu.com/g' /etc/apt/sources.list
+    - name: Install
+      apt: pkg={{ item }} update_cache=yes state=latest
+      with_items:
+        - python-pip
+        - python-dev
+        - libev-dev
+        - golang
+- name: Python
+  hosts: vagrant
+  user: vagrant
+  sudo: yes
+  tasks:
+  - name: pip
+    command: pip install -r /srv/requirements.txt
